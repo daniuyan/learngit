@@ -1,0 +1,28 @@
+创建分支
+git branch dev
+切换分支
+git checkout dev
+查看分支
+git branch
+合并分支,合并后指向master分支
+git merge dev
+删除分支
+git branch -d dev
+查看分支图
+git log --graph
+
+git仓库添加文件
+git add filename
+查看git状态
+git status
+删除文件
+git rm
+丢弃文件区的某个修改
+git checkout -- file
+提交修改内容
+git commit -m "context"
+远程同步git
+git clone https://github.com/daniuyan/learngit.git
+远程推送
+git push -u origin master
+
