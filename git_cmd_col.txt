@@ -25,4 +25,7 @@ git commit -m "context"
 git clone https://github.com/daniuyan/learngit.git
 远程推送
 git push -u origin master
-
+查看远程库
+git remote -v
+从远程抓取分支
+git pull
