@@ -1,4 +1,3 @@
-/*单板部分修改内容，添加mxc单板的tef设备*/
 static struct platform_device mxc_tef6635_device = {
     .name = "imx-tef6635",
 };
@@ -32,3 +31,6 @@ static int mxc_tef6635_init(void)
 
     return 0;
 }
+
+
+

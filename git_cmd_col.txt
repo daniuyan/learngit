@@ -29,3 +29,10 @@ git push -u origin master
 git remote -v
 从远程抓取分支
 git pull
+打标签
+git tag v1.0
+查看标签
+git show v1.0
+删除标签
+git tag -d v1.0
+
