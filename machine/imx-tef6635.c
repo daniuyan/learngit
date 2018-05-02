@@ -5,9 +5,9 @@
 #include <sound/soc.h>
 
 /*
- * 1. 分配注册一个名为tef6635-audio的平台设备
- * 2. 这个平台设备有一个私有数据 snd_soc_card
- *    snd_soc_card里有一项snd_soc_dai_link
+ * 1. 分配注册一个名为soc-audio的平台设备
+ * 2. 这个平台设备有一个私有数据 snd_soc_card imx_tef6635
+ *    snd_soc_card里有一项snd_soc_dai_link imx_tef6635_dai
  *    snd_soc_dai_link被用来决定ASOC各部分的驱动
  */
  
@@ -22,8 +22,8 @@ static struct snd_soc_dai_link imx_tef6635_dai[] = {
 	{
 		.name = "HiFi",
 		.stream_name = "HiFi",
-		.codec_name = "tef6635_dai",			//codec的DAI名称
-		.codec_dai_name = "tef6635-codec",	//使用的codec芯片
+		.codec_name = "tef6635_codec",			//codec芯片的名称
+		.codec_dai_name = "tef6635_codec_dai",	//使用的codec_dai的名字
 		.cpu_dai_name = "imx-ssi.1",		//SOC侧的SSI接口，audmux内部端口2，使用SSI1
 		.platform_name	= "imx-pcm-audio.1",	//soc侧的DMA设置
 		.ops = &imx_tef6635_hifi_ops,			//硬件操作部分
