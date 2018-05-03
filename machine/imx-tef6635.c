@@ -5,13 +5,17 @@
 #include <sound/soc.h>
 
 /*
- * 1. 分配注册一个名为soc-audio的平台设备
+ * 1. 分配注册一个名为soc-audio的平台设备 imx_tef6635_snd_device
  * 2. 这个平台设备有一个私有数据 snd_soc_card imx_tef6635
  *    snd_soc_card里有一项snd_soc_dai_link imx_tef6635_dai
  *    snd_soc_dai_link被用来决定ASOC各部分的驱动
  */
  
- static struct snd_soc_card imx_tef6635;
+static struct platform_device *imx_tef6635_snd_device;
+
+static struct snd_soc_card imx_tef6635;
+
+
 
 static struct snd_soc_ops imx_tef6635_hifi_ops = {
 	//.hw_params = imx_tef6635_hw_params,
@@ -44,7 +48,7 @@ static int __init imx_tef6635_init(void)
 	imx_tef6635_snd_device = platform_device_alloc("soc-audio", 1);
 	if (!imx_tef6635_snd_device)
 		return -ENOMEM;
-	platform_set_drvdata(&imx_tef6635_snd_device, &imx_tef6635);
+	platform_set_drvdata(imx_tef6635_snd_device, &imx_tef6635);
     ret = platform_device_add(imx_tef6635_snd_device);
 
 	if (ret) {

@@ -7,7 +7,16 @@
  static struct snd_soc_codec_driver tef6635_codec_driver = {
 };
 
+static int tef6635_hw_params(struct snd_pcm_substream *substream,
+	struct snd_pcm_hw_params *params,
+	struct snd_soc_dai *dai)
+{
+    /* 根据params的值,设置TEF6635的寄存器 */
+    return 0;
+}
+
 static const struct snd_soc_dai_ops tef6635_ops = {
+	.hw_params = tef6635_hw_params,
 };
 
 static struct snd_soc_dai_driver tef6635_dai = {
@@ -38,7 +47,7 @@ static int tef6635_probe(struct platform_device *pdev)
 			&tef6635_codec_driver, &tef6635_dai, 1);
 }
 
-static int uda1341_remove(struct platform_device *pdev)
+static int tef6635_remove(struct platform_device *pdev)
 {
     return snd_soc_unregister_codec(&pdev->dev);
 }
