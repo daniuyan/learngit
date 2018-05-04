@@ -3,10 +3,6 @@
  * 2. 构造一个snd_soc_codec_driver  tef6635_codec_driver
  * 3. 注册它们
  */
- 
- static struct snd_soc_codec_driver tef6635_codec_driver = {
-};
-
 /* tef6635 private structure in codec */
 struct tef6635_priv {
 	int sysclk;	/* sysclk rate */
@@ -18,9 +14,22 @@ struct tef6635_priv {
 /* 设置全局的tef6635 操作结构体 */
 struct tef6635_setting {
 	bool playpack;		/* playback or callback */
-	int i2s_ctl_reg;	/* I2S控制参数 */
-	int clk_ctl_reg;	/* 时钟控制参数 */
+	int i2s_ctl_params;	/* I2S控制参数 */
+	int clk_ctl_params;	/* 时钟控制参数 */
 }tef6635_setting;
+ 
+static int uda1341_soc_probe(struct snd_soc_codec *codec)
+{
+	//通知MCU完成tef6635的初始化,包括芯片使能，设置I2S通道，mix的默认值等...
+	tef6635_reg_init();
+	return 0;	
+}
+ 
+static struct snd_soc_codec_driver tef6635_codec_driver = {
+	 .probe = tef6635_probe,	//对6635芯片做一些寄存器初始化设置
+};
+
+
 
 /* 需要在此实现与MCU通信函数 */
 static void snd_soc_inform_mcu(struct tef6635_setting *setting){
@@ -40,7 +49,7 @@ static int tef6635_set_clock(struct snd_soc_codec *codec, int frame_rate)
 	struct tef6635_setting *seting = &tef6635_setting;	//指向全局变量tef6635_setting的指针
 	int sys_fs;	/* sample freq */
 	//将相关clk设置置0
-	setting->clk_ctl_reg = 0;
+	setting->clk_ctl_params = 0;
 	
 	/*
 	 * sample freq should be divided by frame clock,
@@ -64,13 +73,13 @@ static int tef6635_set_clock(struct snd_soc_codec *codec, int frame_rate)
 	/* set divided factor of frame clock */
 	switch (sys_fs / frame_rate) {
 	case 4:
-		//setting->clk_ctl_reg = 
+		//setting->clk_ctl_params = 
 		break;
 	case 2:
-		//setting->clk_ctl_reg = 
+		//setting->clk_ctl_params = 
 		break;
 	case 1:
-		//setting->clk_ctl_reg = 
+		//setting->clk_ctl_params = 
 		break;
 	default:
 		return -EINVAL;
@@ -79,16 +88,16 @@ static int tef6635_set_clock(struct snd_soc_codec *codec, int frame_rate)
 	/* set the sys_fs according to frame rate */
 	switch (sys_fs) {
 	case 32000:
-		//setting->clk_ctl_reg =
+		//setting->clk_ctl_params =
 		break;
 	case 44100:
-		//setting->clk_ctl_reg =
+		//setting->clk_ctl_params =
 		break;
 	case 48000:
-		//setting->clk_ctl_reg =
+		//setting->clk_ctl_params =
 		break;
 	case 96000:
-		//setting->clk_ctl_reg =
+		//setting->clk_ctl_params =
 		break;
 	default:
 		dev_err(codec->dev, "frame rate %d not supported\n",
@@ -102,18 +111,18 @@ static int tef6635_set_clock(struct snd_soc_codec *codec, int frame_rate)
 	 */
 	switch (tef6635->sysclk / sys_fs) {
 	case 256:
-		//setting->clk_ctl_reg =
+		//setting->clk_ctl_params =
 		break;
 	case 384:
-		//setting->clk_ctl_reg =
+		//setting->clk_ctl_params =
 		break;
 	case 512:
-		//setting->clk_ctl_reg =
+		//setting->clk_ctl_params =
 		break;
 	default:
 		/* if mclk not satisify the divider, use pll */
 		if (tef6635->master) {
-			//setting->clk_ctl_reg =
+			//setting->clk_ctl_params =
 		} else {
 			dev_err(codec->dev,
 				"PLL not supported in slave mode\n");
@@ -143,7 +152,7 @@ static int tef6635_hw_params(struct snd_pcm_substream *substream,
 	int channels = params_channels(params);
 	int ret;
 	setting->playback = true;
-	seting->i2s_ctl_reg = 0;
+	setting->i2s_ctl_params = 0;
 	
 	/* sysclk should already set*/
 	if (!tef6635->sysclk) {
@@ -166,18 +175,18 @@ static int tef6635_hw_params(struct snd_pcm_substream *substream,
 		if (sgtl5000->fmt == SND_SOC_DAIFMT_RIGHT_J)
 			return -EINVAL;
 		/* 根据传输协议来定 */
-		//seting->i2s_ctl_reg = ;
+		//seting->i2s_ctl_params = ;
 		break;
 	case SNDRV_PCM_FORMAT_S20_3LE:
-		//seting->i2s_ctl_reg = ;
+		//seting->i2s_ctl_params = ;
 		break;
 	case SNDRV_PCM_FORMAT_S24_LE:
-		//seting->i2s_ctl_reg = ;
+		//seting->i2s_ctl_params = ;
 		break;
 	case SNDRV_PCM_FORMAT_S32_LE:
 		if (sgtl5000->fmt == SND_SOC_DAIFMT_RIGHT_J)
 			return -EINVAL;
-		//seting->i2s_ctl_reg = ;
+		//seting->i2s_ctl_params = ;
 		break;
 	default:
 		return -EINVAL;
@@ -239,8 +248,8 @@ struct platform_driver tef6635_drv = {
 	   .name = "tef6635_codec",
 	   .owner = THIS_MODULE,
 	},
-	.probe = tef6635_probe,		//待补充
-	.remove = tef6635_remove,	//待补充
+	.probe = tef6635_probe,		
+	.remove = tef6635_remove,	
 	
 };
 
