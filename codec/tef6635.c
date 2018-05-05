@@ -1,3 +1,18 @@
+#include <linux/module.h>
+#include <linux/moduleparam.h>
+#include <linux/init.h>
+#include <linux/delay.h>
+#include <linux/slab.h>
+#include <sound/pcm.h>
+#include <linux/clk.h>
+#include <linux/platform_device.h>
+#include <sound/pcm_params.h>
+#include <sound/core.h>
+#include <sound/soc.h>
+#include <sound/initval.h>
+#include <asm/io.h>
+
+
 
 /* 1. 构造一个snd_soc_dai_driver   tef6635_dai
  * 2. 构造一个snd_soc_codec_driver  tef6635_codec_driver
