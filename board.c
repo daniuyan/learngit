@@ -32,5 +32,15 @@ static int mxc_tef6635_init(void)
     return 0;
 }
 
+/*在board-mx6q_sabresd的imx6q_init_audio函数里面添加下列注册信息*/
+static int imx6q_init_audio(void)
+{
+	mxc_register_device(&mxc_tef6635_device,
+			    &tef6635_data);
+	imx6q_add_imx_ssi(1, &mx6_sabresd_ssi_pdata);
+
+	mxc_tef6635_init();
+	return 0;
+}
 
 
