@@ -4,9 +4,13 @@ static struct platform_device mxc_tef6635_device = {
 static struct mxc_audio_platform_data tef6635_data = {
     .ssi_num = 1,
     .src_port = 2,
-    .ext_port = 5,
+    .ext_port = 3,
     .init = mxc_tef6635_init,
 };
+/* 5000BT录音使用ssi_num = 0 
+ * src_prot = 1
+ * ext_port = 5
+ */
 static int mxc_tef6635_init(void)
 {
     struct clk *ssi_ext1;

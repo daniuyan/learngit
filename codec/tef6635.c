@@ -41,7 +41,8 @@ static int uda1341_soc_probe(struct snd_soc_codec *codec)
 }
  
 static struct snd_soc_codec_driver tef6635_codec_driver = {
-	 .probe = tef6635_probe,	//对6635芯片做一些寄存器初始化设置
+	.name  = "tef6635_codec", 
+	.probe = tef6635_probe,	//对6635芯片做一些寄存器初始化设置
 };
 
 
@@ -260,7 +261,7 @@ static int tef6635_remove(struct platform_device *pdev)
 
 struct platform_driver tef6635_drv = {
 	.driver = {
-	   .name = "tef6635_codec",
+	   .name = "imx-tef6635",
 	   .owner = THIS_MODULE,
 	},
 	.probe = tef6635_probe,		
@@ -269,7 +270,8 @@ struct platform_driver tef6635_drv = {
 };
 
 
-
+/*设备注册放在单板中进行*/
+/*
 static void tef6635_dev_release(struct device * dev)
 {
 }
@@ -281,17 +283,20 @@ static struct platform_device tef6635_dev = {
     	.release = tef6635_dev_release, 
 	},
 };
+*/
 
 static int tef6635_init(void)
 {
-    platform_device_register(&tef6635_dev);
+    /*设备注册放在单板中进行*/
+	//platform_device_register(&tef6635_dev);
     platform_driver_register(&tef6635_drv);
     return 0;
 }
 
 static void tef6635_exit(void)
 {
-    platform_device_unregister(&tef6635_dev);		//device
+    /*设备注册放在单板中进行*/
+	//platform_device_unregister(&tef6635_dev);		//device
     platform_driver_unregister(&tef6635_drv);		//driver
 }
 
