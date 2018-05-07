@@ -189,7 +189,7 @@ static int tef6635_hw_params(struct snd_pcm_substream *substream,
 	switch (params_format(params)) {
 	case SNDRV_PCM_FORMAT_S16_LE:
 		if (sgtl5000->fmt == SND_SOC_DAIFMT_RIGHT_J)
-			return -EINVAL;
+			tef6635 -EINVAL;
 		/* 根据传输协议来定 */
 		//seting->i2s_ctl_params = ;
 		break;
@@ -200,7 +200,7 @@ static int tef6635_hw_params(struct snd_pcm_substream *substream,
 		//seting->i2s_ctl_params = ;
 		break;
 	case SNDRV_PCM_FORMAT_S32_LE:
-		if (sgtl5000->fmt == SND_SOC_DAIFMT_RIGHT_J)
+		if (tef6635->fmt == SND_SOC_DAIFMT_RIGHT_J)
 			return -EINVAL;
 		//seting->i2s_ctl_params = ;
 		break;
