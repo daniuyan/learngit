@@ -28,12 +28,17 @@ static iomux_v3_cfg_t mx6q_sabresd_pads[] = {
 	MX6Q_PAD_KEY_ROW0__AUDMUX_AUD5_TXD,
 	MX6Q_PAD_KEY_COL1__AUDMUX_AUD5_TXFS,
 	MX6Q_PAD_KEY_ROW1__AUDMUX_AUD5_RXD,
+	
+	
 
 	/* pins connected to TEF6635 for playback */
 	/* SSI1 src_port 2 ext_prot 3 */
 	MX6Q_PAD_CSI0_DAT4__AUDMUX_AUD3_TXC,
 	MX6Q_PAD_CSI0_DAT6__AUDMUX_AUD3_TXFS,
 	MX6Q_PAD_CSI0_DAT5__AUDMUX_AUD3_TXD,
+	
+	
+	/* VIDEO */
 	
 	/* CAN1  */
 	MX6Q_PAD_GPIO_7__CAN1_TXCAN,

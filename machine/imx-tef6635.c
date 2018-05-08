@@ -9,6 +9,7 @@
 #include <sound/soc.h>
 #include <sound/pcm.h>
 #include <asm/mach-types.h>
+
 #include "imx-ssi.h"
 
 /*
@@ -54,25 +55,27 @@ static struct snd_soc_card imx_tef6635 = {
 	.num_links	= ARRAY_SIZE(imx_tef6635_dai),
 };
 
+/*设置ADUMUX的相关配置*/
 static int imx_audmux_config(int slave, int master)
 {
 	unsigned int ptcr, pdcr;
 	slave = slave - 1;
 	master = master - 1;
 
-	/* SSI0 mastered by port 5 */
+	/* 对于slave端口的配置，也就是audmux的src_port */
+	/* mx6的audio port设置为slave模式，由codec输出pcm clock*/
 	ptcr = MXC_AUDMUX_V2_PTCR_SYN |
 		MXC_AUDMUX_V2_PTCR_TFSDIR |
-		MXC_AUDMUX_V2_PTCR_TFSEL(master) |
+		MXC_AUDMUX_V2_PTCR_TFSEL(master) |	//I2S设置为slave模式，从ext_port获取时钟
 		MXC_AUDMUX_V2_PTCR_TCLKDIR |
-		MXC_AUDMUX_V2_PTCR_TCSEL(master);  //pcm_clk from master port(ext_port)
+		MXC_AUDMUX_V2_PTCR_TCSEL(master);   //clk from master port(ext_port)
 	pdcr = MXC_AUDMUX_V2_PDCR_RXDSEL(master);
 	mxc_audmux_v2_configure_port(slave, ptcr, pdcr);
 
 	ptcr = MXC_AUDMUX_V2_PTCR_SYN;
 	pdcr = MXC_AUDMUX_V2_PDCR_RXDSEL(slave);
 	mxc_audmux_v2_configure_port(master, ptcr, pdcr);
-
+	
 	return 0;
 }
 
