@@ -9,6 +9,7 @@
 #include <sound/soc.h>
 #include <sound/pcm.h>
 #include <asm/mach-types.h>
+#include <mach/audmux.h>
 
 #include "imx-ssi.h"
 
@@ -100,7 +101,7 @@ static int __devinit imx_tef6635_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int imx_sgtl5000_remove(struct platform_device *pdev)
+static int imx_tef6635_remove(struct platform_device *pdev)
 {
 	struct mxc_audio_platform_data *plat = pdev->dev.platform_data;
 
@@ -135,6 +136,7 @@ static int __init imx_tef6635_init(void)
 	if (ret) {
 		printk(KERN_ERR "ASoC: Platform device allocation failed\n");
 		platform_device_put(imx_tef6635_snd_device);
+	}
     return 0;
 }
 

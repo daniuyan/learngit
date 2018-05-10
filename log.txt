@@ -21,3 +21,26 @@
 
 20180510
 1、修改imx6_defconfig，将CONFIG_SND_SOC_TEF6635和CONFIG_SND_SOC_IMX_TEF6635打开
+2、调试删除fixup_mxc_board中的codec与单板匹配的内容
+3、mx6_sabresd_board_init中有对codec选择的代码删除
+4、修改管理文件Kconfig，添加对TEF6635的支持select SND_SOC_TEF6635
+config SND_SOC_IMX_SGTL5000
+        tristate "SoC Audio support for i.MX boards with sgtl5000"
+        depends on I2C && (MACH_MX35_3DS || MACH_MX51_BABBAGE \
+                        || MACH_MX6Q_SABRELITE || MACH_MX6Q_ARM2 \
+                        || MACH_MX6Q_SABRESD)
+        select SND_SOC_SGTL5000
+        select SND_MXC_SOC_MX2
+        help
+          Say Y if you want to add support for SoC audio on an i.MX board with
+          a sgtl5000 codec.
+
+config SND_SOC_IMX_TEF6635
+        tristate "SoC Audio support for i.MX boards with tef6635"
+        select SND_SOC_TEF6635
+        select SND_MXC_SOC_MX2
+        help
+          Say Y if you want to add support for SoC audio on an i.MX board with
+          a tef6635 codec.
+5、imx-tef6635.c添加头文件 #include <mach/audmux.h>
+6、imx-tef6635.c中添加imx_tef6635_remove函数
