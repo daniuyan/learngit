@@ -1,0 +1,23 @@
+
+20180507 
+1、	board-mx6q_sabresd.h 修改sgtl5000的I2S连接引脚和I2C引脚，修改tef6635的引脚
+2、	board-mx6q_sabresd.c中添加名为imx-tef6635的平台设备，并设置平台设备的SSI数据
+3、	删除原文件中对其他声卡的初始化函数
+4、	移植sgtl5000部分的单板相关内容
+5、	添加sgtl5000的控制函数
+6、	在imx-tef6635中注册一个名为soc_audio的平台声卡设备，他会导致内核调用soc_core里面的驱动去注册一个声卡。
+7、	给声卡设备分配一个私有数据snd_soc_card imx_tef6635，根据其中的soc_dai_link数据去注册驱动
+8、	为imx-tef6635添加头文件
+9、	在tef6635文件中注册平台驱动platform_driver_register(&tef6635_drv)，通过平台驱动的probe去注册codec和code_dai
+10、	在sound/soc/codecs下的Makefile中添加snd-soc-tef6635-objs := tef6635.o和obj-$(CONFIG_SND_SOC_TEF6635)   += snd-soc-tef6635.o，将tef6635.c编入内核
+11、	在sound/soc/imx下的Makefile中添加snd-soc-imx-tef6635-objs := imx-tef6635.o和obj-$(CONFIG_SND_SOC_IMX_TEF6635) += snd-soc-imx-tef6635.o，将imx-tef6635.c编入内核
+12、	在arch/arm/configs/imx6_defconfig中将IMX下和CODECS下的TEF6635编入内核CONFIG_SND_SOC_IMX_TEF6635=y，CONFIG_SND_SOC_TEF6635=y
+13、	修改imx-sgtl5000中的imx_sgtl5000_dai使用ssi0
+14、	修改imx_audmux_config，配置audmux的clock方向，对于BT录音，sgtl5000的audmux设置需要修改为mx6输出pcm时钟，而tef6635仍然由codec输出pcm时钟。
+
+20180508 
+1、	对于配置SSI为slave模式，由codec来设置时钟。
+2、	修改imx-sgtl5000中的sgtl5000_params函数，将dai_format模式设置为SND_SOC_DAIFMT_CBS_CFS。也就是对于BT录音功能，mx6为主设备，提供时钟。而对于播音，codec为主设备，提供同步时钟。
+
+20180510
+1、修改imx6_defconfig，将CONFIG_SND_SOC_TEF6635和CONFIG_SND_SOC_IMX_TEF6635打开
