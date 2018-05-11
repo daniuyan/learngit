@@ -44,3 +44,17 @@ config SND_SOC_IMX_TEF6635
           a tef6635 codec.
 5、imx-tef6635.c添加头文件 #include <mach/audmux.h>
 6、imx-tef6635.c中添加imx_tef6635_remove函数
+
+20180511
+1、在文件sound/soc/imx/Kconfig下添加对IMX-TEF6635配置项的依赖
+   depands on MACH_MX6Q_SABRESD
+2、在文件sound/soc/codecs/Kconfig下添加对tef6635.o开关项的配置，并默认打开
+#tef6635 codec is a virtual dev
+config SND_SOC_TEF6635
+        tristate "just for playback of rothwell"
+        default y
+3、tef6635_codec_driver tef6635_codec_driver这个变量并没有name，删去name属性
+4、将uda1341_soc_probe改名为tef6635_probe
+5、该probe内未实现的通知MCU初始化tef6635设备的函数删除，由中间件去做通知
+6、修改tef6635里面的一些拼写问题
+7、修改tef6635的tef6635_remove函数，给出返回值
