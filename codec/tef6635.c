@@ -28,21 +28,21 @@ struct tef6635_priv {
 
 /* 设置全局的tef6635 操作结构体 */
 struct tef6635_setting {
-	bool playpack;		/* playback or callback */
+	bool playback;		/* playback or callback */
 	int i2s_ctl_params;	/* I2S控制参数 */
 	int clk_ctl_params;	/* 时钟控制参数 */
 }tef6635_setting;
  
-static int uda1341_soc_probe(struct snd_soc_codec *codec)
+static int tef6635_soc_probe(struct snd_soc_codec *codec)
 {
 	//通知MCU完成tef6635的初始化,包括芯片使能，设置I2S通道，mix的默认值等...
-	tef6635_reg_init();
+	//此处通知的工作由中间件完成，该程序只负责注册，probe中不做任何事情，tef6635_reg_init();
 	return 0;	
 }
  
 static struct snd_soc_codec_driver tef6635_codec_driver = {
-	.name  = "tef6635_codec", 
-	.probe = tef6635_probe,	//对6635芯片做一些寄存器初始化设置
+	//.name  = "tef6635_codec", 
+	.probe = tef6635_soc_probe,	//对6635芯片做一些寄存器初始化设置
 };
 
 
@@ -62,7 +62,7 @@ static void snd_soc_inform_mcu(struct tef6635_setting *setting){
 static int tef6635_set_clock(struct snd_soc_codec *codec, int frame_rate)
 {
 	struct tef6635_priv *tef6635 = snd_soc_codec_get_drvdata(codec);
-	struct tef6635_setting *seting = &tef6635_setting;	//指向全局变量tef6635_setting的指针
+	struct tef6635_setting *setting = &tef6635_setting;	//指向全局变量tef6635_setting的指针
 	int sys_fs;	/* sample freq */
 	//将相关clk设置置0
 	setting->clk_ctl_params = 0;
@@ -164,10 +164,11 @@ static int tef6635_hw_params(struct snd_pcm_substream *substream,
 	struct snd_soc_codec *codec = rtd->codec;
 	//引入结构体，返回的是声卡设备的priv_data的指针
 	struct tef6635_priv *tef6635 = snd_soc_codec_get_drvdata(codec);
-	struct tef6635_setting *seting = &tef6635_setting;	//指向全局变量tef6635_setting的指针
+	struct tef6635_setting *setting = &tef6635_setting;	//指向全局变量tef6635_setting的指针
 	int channels = params_channels(params);
 	int ret;
 	setting->playback = true;
+
 	setting->i2s_ctl_params = 0;
 	
 	/* sysclk should already set*/
@@ -178,7 +179,7 @@ static int tef6635_hw_params(struct snd_pcm_substream *substream,
 	
 	/* tef6635仅用于playback */
 	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
-		seting->playpack = ture;
+		setting->playback = true;
 		
 	/* set codec clock base on lrclk */
 	ret = tef6635_set_clock(codec, params_rate(params));
@@ -188,7 +189,7 @@ static int tef6635_hw_params(struct snd_pcm_substream *substream,
 	/* set i2s data format */
 	switch (params_format(params)) {
 	case SNDRV_PCM_FORMAT_S16_LE:
-		if (sgtl5000->fmt == SND_SOC_DAIFMT_RIGHT_J)
+		if (tef6635->fmt == SND_SOC_DAIFMT_RIGHT_J)
 			tef6635 -EINVAL;
 		/* 根据传输协议来定 */
 		//seting->i2s_ctl_params = ;
@@ -256,7 +257,8 @@ static int tef6635_probe(struct platform_device *pdev)
 
 static int tef6635_remove(struct platform_device *pdev)
 {
-    return snd_soc_unregister_codec(&pdev->dev);
+    snd_soc_unregister_codec(&pdev->dev);
+    return 0;
 }
 
 struct platform_driver tef6635_drv = {
