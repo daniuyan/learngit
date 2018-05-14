@@ -47,14 +47,14 @@ static struct snd_soc_codec_driver tef6635_codec_driver = {
 
 
 
-/* 需要在此实现与MCU通信函数 */
-static void snd_soc_inform_mcu(struct tef6635_setting *setting){
+/* 通信函数 */
+/*static void snd_soc_inform_mcu(struct tef6635_setting *setting){
 	//解析setting
 	//打包解析后的数据
 	//通过uart口传输到mcu
 	//确认对端完成设置及错误处理
 	
-}
+}*/
 
 /*
  * set clock according to i2s frame clock,
@@ -149,6 +149,7 @@ static int tef6635_set_clock(struct snd_soc_codec *codec, int frame_rate)
 	/* 如果有时钟相关的其他设置，在此处继续添加代码*/
 	//将设置发送给mcu	
 	//snd_soc_inform_mcu(setting); 
+	return 0;
 }
 
 static int tef6635_hw_params(struct snd_pcm_substream *substream,
@@ -165,7 +166,7 @@ static int tef6635_hw_params(struct snd_pcm_substream *substream,
 	//引入结构体，返回的是声卡设备的priv_data的指针
 	struct tef6635_priv *tef6635 = snd_soc_codec_get_drvdata(codec);
 	struct tef6635_setting *setting = &tef6635_setting;	//指向全局变量tef6635_setting的指针
-	int channels = params_channels(params);
+	//int channels = params_channels(params);
 	int ret;
 	setting->playback = true;
 
@@ -190,7 +191,7 @@ static int tef6635_hw_params(struct snd_pcm_substream *substream,
 	switch (params_format(params)) {
 	case SNDRV_PCM_FORMAT_S16_LE:
 		if (tef6635->fmt == SND_SOC_DAIFMT_RIGHT_J)
-			tef6635 -EINVAL;
+		return -EINVAL;
 		/* 根据传输协议来定 */
 		//seting->i2s_ctl_params = ;
 		break;
@@ -291,6 +292,7 @@ static int tef6635_init(void)
 {
     /*设备注册放在单板中进行*/
 	//platform_device_register(&tef6635_dev);
+    printk("------------------tef6635 drv for testing!--------------------");  
     platform_driver_register(&tef6635_drv);
     return 0;
 }
@@ -304,3 +306,7 @@ static void tef6635_exit(void)
 
 module_init(tef6635_init);
 module_exit(tef6635_exit);
+MODULE_DESCRIPTION("Freescale SGTL5000 ALSA SoC Codec Driver");
+MODULE_AUTHOR("LIUFENG");
+MODULE_LICENSE("GPL");
+

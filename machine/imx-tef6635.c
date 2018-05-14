@@ -122,7 +122,7 @@ static struct platform_driver imx_tef6635_audio_driver = {
 static int __init imx_tef6635_init(void)
 {
 	int ret;
-
+	printk("--------------------imx-tef6635 drv for testing !--------------------");  
 	ret = platform_driver_register(&imx_tef6635_audio_driver);
 	if (ret)
 		return -ENOMEM;
@@ -150,6 +150,6 @@ static void __exit imx_tef6635_exit(void)
 module_init(imx_tef6635_init);
 module_exit(imx_tef6635_exit);
 
-MODULE_AUTHOR("Sascha Hauer <s.hauer@pengutronix.de>");
+MODULE_AUTHOR("liufeng");
 MODULE_DESCRIPTION("PhyCORE ALSA SoC driver");
 MODULE_LICENSE("GPL");
