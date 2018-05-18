@@ -66,3 +66,15 @@ config SND_SOC_TEF6635
 此时查到/lib/modules/3.0.35-2666-gbdde708/modules_builtin文件，已经有了对tef6635的支持
 4、将lib目录拷贝到烧写工具下的rootfs对应目录下，重新烧写即可。
 
+20180518
+1、board-mx6q_sabresd.c中的ldb_data的disp_id=0。 此处disp_id代表了LDVS的通道号，自研单板仅连接了LDVS0
+2、修改uboot配置菜单，该配置在uboot-imx/common/cmd_scr_android.c中，修改codec部分的选项
+3、修改uboot默认命令，默认使用ldb启动，该配置在uboot-imx/include/configs/mx6q_sabresd.h中，将CONFIG_UBOOT_KERNEL_LVDS宏打开
+   同时修改#define DEFAULT_CODEC 	 "codec_name=audio_codec=tef6635\0"
+4、去掉声卡codec和imx中的测试信息
+6、在内核arch/arm/configs/imx6_defconfig中去掉对WM系列声卡驱动的配置，添加SGTL5000和TEF6635：
+#CONFIG_SND_SOC_IMX_WM8962=y
+#CONFIG_SND_SOC_IMX_WM8960=y
+#CONFIG_SND_SOC_IMX_CS42888=y
+CONFIG_SND_SOC_IMX_SGTL5000=y
+CONFIG_SND_SOC_IMX_TEF6635=y

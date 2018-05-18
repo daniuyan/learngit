@@ -1528,7 +1528,7 @@ static struct fsl_mxc_lcd_platform_data lcdif_data = {
 
 static struct fsl_mxc_ldb_platform_data ldb_data = {
 	.ipu_id = 0,
-	.disp_id = 1,
+	.disp_id = 0,
 	.ext_ref = 1,
 	.mode = LDB_SEP1,
 	.sec_ipu_id = 0,
