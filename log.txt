@@ -78,3 +78,9 @@ config SND_SOC_TEF6635
 #CONFIG_SND_SOC_IMX_CS42888=y
 CONFIG_SND_SOC_IMX_SGTL5000=y
 CONFIG_SND_SOC_IMX_TEF6635=y
+
+20180519
+1、对比reference_driver和当前touchscreen下的gt9xx.c文件  
+2、修改gt9xx.h中的CTP_CFG_GROUP，这个参数用来校验触摸屏是否准确。GTP_CUSTOM_CFG
+3、测试时先不做修改，如果不准确再修改该参数
+
