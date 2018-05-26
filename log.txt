@@ -84,3 +84,8 @@ CONFIG_SND_SOC_IMX_TEF6635=y
 2、修改gt9xx.h中的CTP_CFG_GROUP，这个参数用来校验触摸屏是否准确。GTP_CUSTOM_CFG
 3、测试时先不做修改，如果不准确再修改该参数
 
+20180524
+1、TEF6635的参考时钟是 12000000，所有修改cmd_scr_android.c中codec参数为audio_codec=tef6635-12M
+2、修改board-mx6q_sabresd.c中fixup_mxc_board的codec解析部分直接赋值
+audio_codec = CODEC_TEF6635;						
+tef6635_clk_rate = 12000000;

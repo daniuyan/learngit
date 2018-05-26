@@ -326,7 +326,7 @@ int select_codec()
                         return 0;
                         break;
                 case '1':
-			setenv("codec_name","audio_codec=tef6635");
+			setenv("codec_name","audio_codec=tef6635-12M");
                         break;
                 default:
                         printf("incorrect number\n");
