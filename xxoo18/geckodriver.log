@@ -1,0 +1,121 @@
+1552631595422	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.h7djIRs19knK"
+1552631602112	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552631602112	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:64778): LIBDBUSMENU-GLIB-WARNING **: Unable to get session bus: Could not connect: Connection refused
+Exiting due to channel error.
+Exiting due to channel error.
+[Child 65101, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /build/firefox-5TPFUC/firefox-65.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 718
+
+###!!! [Child][MessageChannel] Error: (msgtype=0xFFF7,name=<unknown IPC msg name>) Channel error: cannot send/recv
+
+1552633805753	geckodriver	INFO	geckodriver 0.20.1
+1552633805759	geckodriver	INFO	Listening on 127.0.0.1:56241
+1552633805764	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/rust_mozprofile.JOSCqFmQcaWP"
+1552633808854	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552633808855	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1552633809316	Marionette	TRACE	Received observer notification profile-after-change
+1552633809652	Marionette	TRACE	Received observer notification command-line-startup
+1552633809652	Marionette	TRACE	Received observer notification nsPref:changed
+1552633809653	Marionette	DEBUG	Init aborted (running=false, enabled=true, finalUIStartup=false)
+1552633815113	Marionette	TRACE	Received observer notification toplevel-window-ready
+
+(firefox:65737): LIBDBUSMENU-GLIB-WARNING **: Unable to get session bus: Could not connect: Connection refused
+1552633832002	Marionette	TRACE	Received observer notification sessionstore-windows-restored
+1552633832002	Marionette	TRACE	Waiting until startup recorder finished recording startup scripts...
+1552633833184	Marionette	TRACE	All scripts recorded.
+1552633833184	Marionette	DEBUG	Setting recommended pref app.update.disabledForTesting to true
+1552633833187	Marionette	DEBUG	Setting recommended pref browser.contentblocking.introCount to 99
+1552633833188	Marionette	DEBUG	Setting recommended pref browser.newtabpage.enabled to false
+1552633833196	Marionette	DEBUG	Setting recommended pref datareporting.policy.dataSubmissionPolicyAccepted to false
+1552633833196	Marionette	DEBUG	Setting recommended pref dom.disable_beforeunload to true
+1552633833197	Marionette	DEBUG	Setting recommended pref toolkit.cosmeticAnimations.enabled to false
+1552633833752	Marionette	INFO	Listening on port 41151
+1552633833753	Marionette	DEBUG	Remote service is active
+1552633835214	Marionette	DEBUG	Accepted connection 0 from 127.0.0.1:40810
+1552633835229	Marionette	DEBUG	0 -> [0,1,"newSession",{"acceptInsecureCerts":true,"browserName":"firefox","capabilities":{"desiredCapabilities":{"acceptInsecureCerts":true,"browserName":"firefox"}}}]
+1552633835230	Marionette	DEBUG	0 <- [1,1,{"error":"unknown command","message":"newSession","stacktrace":"WebDriverError@chrome://marionette/content/error.js:179: ... et@chrome://marionette/content/server.js:236:8\n_onJSONObjectReady/<@chrome://marionette/content/transport.js:490:9\n"},null]
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1552634629768	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.mM0OiADdrVnx"
+1552634631810	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552634631810	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:66024): LIBDBUSMENU-GLIB-WARNING **: Unable to get session bus: Could not connect: Connection refused
+1552634647949	Marionette	INFO	Listening on port 41937
+1552634647996	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js, line 1: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:188:13
+
+1552635160450	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.vtSAkK6oRwhU"
+1552635163453	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552635163453	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:66310): LIBDBUSMENU-GLIB-WARNING **: Unable to get session bus: Could not connect: Connection refused
+1552635189875	Marionette	INFO	Listening on port 46289
+1552635190021	Marionette	WARN	TLS certificate errors will be ignored for this session
+1552635231711	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.5IK5h7gvZzKo"
+1552635234015	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552635234015	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:66550): LIBDBUSMENU-GLIB-WARNING **: Unable to get session bus: Could not connect: Connection refused
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:188:13
+
+1552635256379	Marionette	INFO	Listening on port 38429
+1552635257304	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js, line 1: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:188:13
+
+1552635301306	Marionette	INFO	Stopped listening on port 38429
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1552635339648	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.KVcofFBtmnJR"
+1552635342309	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552635342309	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:66756): LIBDBUSMENU-GLIB-WARNING **: Unable to get session bus: Could not connect: Connection refused
+1552635361368	Marionette	INFO	Listening on port 36815
+1552635361414	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js, line 1: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+1552635375410	Marionette	INFO	Stopped listening on port 36815
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1552635392629	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.mzvpx6kkWvEJ"
+1552635395174	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552635395174	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:66957): LIBDBUSMENU-GLIB-WARNING **: Unable to get session bus: Could not connect: Connection refused
+1552635413692	Marionette	INFO	Listening on port 43175
+1552635413731	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js, line 1: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+JavaScript warning: http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js, line 1: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+JavaScript warning: http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js, line 1: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+JavaScript warning: http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js, line 1: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+Exiting due to channel error.
+[Child 67040, Chrome_ChildThread] WARNING: pipe error (38): Connection reset by peer: file /build/firefox-5TPFUC/firefox-65.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 349
+Exiting due to channel error.
+Exiting due to channel error.
+1552635567897	Marionette	INFO	Stopped listening on port 46289
+[Parent 66024, Gecko_IOThread] WARNING: pipe error (125): Connection reset by peer: file /build/firefox-5TPFUC/firefox-65.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 349
+1552635571079	Marionette	INFO	Stopped listening on port 41937
